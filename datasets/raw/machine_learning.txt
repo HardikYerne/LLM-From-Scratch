@@ -1,0 +1,20 @@
+Machine learning allows computers to learn from data.
+Data is the foundation of machine learning.
+Features represent important information in datasets.
+Labels represent the correct answers.
+Training helps models learn patterns.
+Testing measures how well a model performs.
+Validation prevents overfitting during training.
+Neural networks contain multiple connected layers.
+Each neuron processes numerical information.
+Embeddings convert words into dense vectors.
+Transformers use self attention mechanisms.
+Attention helps models focus on important words.
+Large language models predict the next token.
+Gradient descent minimizes prediction errors.
+Backpropagation updates model parameters.
+Optimization improves model performance.
+Loss functions measure prediction mistakes.
+Fine tuning adapts models for specific tasks.
+Inference generates predictions from trained models.
+Artificial intelligence solves many real world problems.

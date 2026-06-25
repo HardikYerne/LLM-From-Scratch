@@ -1,0 +1,20 @@
+Numbers represent quantities.
+Addition combines two numbers.
+Subtraction finds the difference between values.
+Multiplication is repeated addition.
+Division separates values into equal parts.
+Fractions represent parts of a whole.
+Decimals represent fractional values.
+Percentages compare values out of one hundred.
+Vectors contain magnitude and direction.
+Matrices organize values into rows and columns.
+The dot product measures similarity between vectors.
+Probability measures uncertainty.
+Statistics summarize data.
+Functions map inputs to outputs.
+Derivatives measure the rate of change.
+Gradients guide optimization algorithms.
+Linear algebra is important in deep learning.
+Calculus helps train neural networks.
+Mathematics is the language of machine learning.
+Algorithms solve mathematical problems efficiently.

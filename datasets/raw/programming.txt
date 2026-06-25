@@ -1,0 +1,20 @@
+Python is a popular programming language.
+Python uses indentation to organize code.
+Variables store different types of values.
+Functions help divide programs into reusable parts.
+Loops repeat instructions multiple times.
+Conditional statements make decisions in programs.
+Lists store ordered collections of data.
+Tuples are immutable sequences of values.
+Dictionaries store data using key value pairs.
+Sets store unique values without duplicates.
+Classes define the blueprint of objects.
+Objects are created from classes.
+Modules help organize Python programs.
+Packages contain multiple related modules.
+Exception handling prevents programs from crashing.
+Git tracks changes in source code.
+GitHub hosts software repositories online.
+Version control helps developers collaborate.
+Debugging helps identify programming errors.
+Writing clean code improves readability.
