@@ -4,70 +4,91 @@ from data_loader import DataLoader
 from analyzer import CorpusAnalyzer
 from cleaner import TextCleaner
 from normalizer import TextNormalizer
+from writer import CorpusWriter
 
 
 def main():
 
-    # Project Root
+    # ======================================================
+    # Project Paths
+    # ======================================================
+
     project_root = Path(__file__).resolve().parents[3]
 
-    # Dataset Path
-    dataset_path = project_root / "datasets" / "raw"
+    raw_dataset_path = project_root / "datasets" / "raw"
 
-    print("=" * 60)
-    print("DEBUG INFORMATION")
-    print("=" * 60)
+    processed_dataset_path = project_root / "datasets" / "processed"
 
-    print("Current File :", Path(__file__).resolve())
-    print("Project Root :", project_root)
-    print("Dataset Path :", dataset_path)
-    print("Dataset Exists :", dataset_path.exists())
-
-    # -----------------------------
+    # ======================================================
     # Load Dataset
-    # -----------------------------
-    loader = DataLoader(dataset_path)
+    # ======================================================
+
+    print("=" * 60)
+    print("LLM FROM SCRATCH")
+    print("PROJECT 01 : TEXT PROCESSING")
+    print("=" * 60)
+
+    loader = DataLoader(raw_dataset_path)
+
     documents = loader.load_documents()
+
+    if len(documents) == 0:
+        print("No documents found.")
+        return
 
     print(f"\nDocuments Loaded : {len(documents)}")
 
     for document in documents:
-        print(f"- {document['document_name']}")
+        print(f"✓ {document['document_name']}")
 
-    if len(documents) == 0:
-        print("\nERROR : No documents found.")
-        return
+    # ======================================================
+    # Text Cleaning
+    # ======================================================
 
-    # -----------------------------
-    # Clean & Normalize
-    # -----------------------------
     cleaner = TextCleaner()
+
+    for document in documents:
+        document["text"] = cleaner.clean(document["text"])
+
+    print("\nText Cleaning Completed.")
+
+    # ======================================================
+    # Text Normalization
+    # ======================================================
+
     normalizer = TextNormalizer()
 
     for document in documents:
+        document["text"] = normalizer.normalize(document["text"])
 
-        text = document["text"]
-
-        text = cleaner.clean(text)
-        text = normalizer.normalize(text)
-
-        document["text"] = text
-
-    print("\nText Cleaning Completed.")
     print("Text Normalization Completed.")
 
-    # -----------------------------
-    # Analyze Corpus
-    # -----------------------------
+    # ======================================================
+    # Corpus Analysis
+    # ======================================================
+
     analyzer = CorpusAnalyzer(documents)
+
     stats = analyzer.analyze()
 
-    # -----------------------------
-    # Print Statistics
-    # -----------------------------
+    print("\nCorpus Analysis Completed.")
+
+    # ======================================================
+    # Save Processed Dataset
+    # ======================================================
+
+    writer = CorpusWriter(processed_dataset_path)
+
+    writer.save_documents(documents)
+
+    writer.save_statistics(stats)
+
+    # ======================================================
+    # Final Report
+    # ======================================================
+
     print("\n" + "=" * 60)
-    print("LLM FROM SCRATCH")
-    print("Project 01 : Text Processing")
+    print("PROJECT REPORT")
     print("=" * 60)
 
     print(f"Documents           : {stats['documents']}")

@@ -1,7 +1,8 @@
 class TextNormalizer:
 
-    def normalize(self,text):
+    def normalize(self, text):
 
-        text=text.lower()
+        # Convert to lowercase
+        text = text.lower()
 
         return text

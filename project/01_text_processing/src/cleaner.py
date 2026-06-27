@@ -1,12 +1,14 @@
 import re
 
-class TestCleanner:
 
-    def clran(self,text):
+class TextCleaner:
 
-        text =re.sub(r"\s+"," ",text)
+    def clean(self, text):
 
+        # Remove extra spaces, tabs and newlines
+        text = re.sub(r"\s+", " ", text)
 
+        # Remove leading/trailing spaces
         text = text.strip()
 
         return text
