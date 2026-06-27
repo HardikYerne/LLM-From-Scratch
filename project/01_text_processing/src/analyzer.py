@@ -18,18 +18,14 @@ class CorpusAnalyzer:
 
             text = document["text"]
 
-            # Count sentences
             sentences = [s for s in text.split(".") if s.strip()]
             total_sentences += len(sentences)
 
-            # Count words
             words = text.split()
             total_words += len(words)
 
-            # Count characters
             total_characters += len(text)
 
-            # Find longest document
             if len(words) > longest_length:
                 longest_length = len(words)
                 longest_document = document["document_name"]
