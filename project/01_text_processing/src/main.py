@@ -1,19 +1,9 @@
 from pathlib import Path
+
 from data_loader import DataLoader
 from analyzer import CorpusAnalyzer
 from cleaner import TextCleaner
 from normalizer import TextNormalizer
-
-cleaner = TextCleaner()
-normalizer = TextNormalizer()
-
-for document in documents:
-    text = document["text"]
-
-    text = cleaner.clean(text)
-    text = normalizer.normalize(text)
-
-    document["text"] = text
 
 
 def main():
@@ -33,37 +23,63 @@ def main():
     print("Dataset Path :", dataset_path)
     print("Dataset Exists :", dataset_path.exists())
 
+    # -----------------------------
+    # Load Dataset
+    # -----------------------------
     loader = DataLoader(dataset_path)
-
     documents = loader.load_documents()
 
-    print("Documents Loaded :", len(documents))
+    print(f"\nDocuments Loaded : {len(documents)}")
 
     for document in documents:
-        print(document["document_name"])
-
-    print("=" * 60)
+        print(f"- {document['document_name']}")
 
     if len(documents) == 0:
-        print("ERROR : No documents found.")
+        print("\nERROR : No documents found.")
         return
 
-    analyzer = CorpusAnalyzer(documents)
+    # -----------------------------
+    # Clean & Normalize
+    # -----------------------------
+    cleaner = TextCleaner()
+    normalizer = TextNormalizer()
 
+    for document in documents:
+
+        text = document["text"]
+
+        text = cleaner.clean(text)
+        text = normalizer.normalize(text)
+
+        document["text"] = text
+
+    print("\nText Cleaning Completed.")
+    print("Text Normalization Completed.")
+
+    # -----------------------------
+    # Analyze Corpus
+    # -----------------------------
+    analyzer = CorpusAnalyzer(documents)
     stats = analyzer.analyze()
 
-    print("\n")
-    print("=" * 50)
+    # -----------------------------
+    # Print Statistics
+    # -----------------------------
+    print("\n" + "=" * 60)
     print("LLM FROM SCRATCH")
     print("Project 01 : Text Processing")
-    print("=" * 50)
+    print("=" * 60)
 
-    print(f"Documents Loaded : {stats['documents']}")
-    print(f"Total Sentences : {stats['sentences']}")
-    print(f"Total Words : {stats['words']}")
-    print(f"Total Characters : {stats['characters']}")
-    print(f"Average Words/Document : {stats['average_words']}")
-    print(f"Longest Document : {stats['longest_document']}")
+    print(f"Documents           : {stats['documents']}")
+    print(f"Sentences           : {stats['sentences']}")
+    print(f"Words               : {stats['words']}")
+    print(f"Characters          : {stats['characters']}")
+    print(f"Average Words/Doc   : {stats['average_words']}")
+    print(f"Longest Document    : {stats['longest_document']}")
+
+    print("=" * 60)
+    print("Project 01 Completed Successfully.")
+    print("=" * 60)
 
 
 if __name__ == "__main__":
