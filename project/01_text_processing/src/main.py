@@ -1,6 +1,19 @@
 from pathlib import Path
 from data_loader import DataLoader
 from analyzer import CorpusAnalyzer
+from cleaner import TextCleaner
+from normalizer import TextNormalizer
+
+cleaner = TextCleaner()
+normalizer = TextNormalizer()
+
+for document in documents:
+    text = document["text"]
+
+    text = cleaner.clean(text)
+    text = normalizer.normalize(text)
+
+    document["text"] = text
 
 
 def main():
