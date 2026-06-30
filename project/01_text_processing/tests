@@ -1,1 +1,13 @@
-from 
+from pathlib import Path
+
+class DataLoader:
+    """
+    load all text document from the raw
+    """ 
+    def __init__(self, dataset_path):
+        self.dataset_path=Path("C:\Users\hardi\OneDrive\Desktop\LLM-From-Scratch\datasets\raw")
+    
+    def load_documents(self):
+        documents=[]
+
+        for file_path in  self.dtaset
